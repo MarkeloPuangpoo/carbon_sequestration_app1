@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำนวณการกักเก็บคาร์บอนจากต้นโกงกาง</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        .logo {
+            width: 100px; /* ปรับขนาดโลโก้ */
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- แสดงโลโก้ -->
+        <img src="{{ url_for('static', filename='Logo_BBV-removebg-preview.png') }}" alt="Logo" class="logo mb-4">
+        
+        <!-- หัวข้อหลัก -->
+        <div class="text-center mb-4">
+            <h1>เว็บคำนวณความสามารถในการกักเก็บคาร์บอนของต้นโกงกาง</h1>
+            <p>เว็บไซต์นี้ช่วยคำนวณการกักเก็บคาร์บอนจากข้อมูลเส้นรอบวงและความสูงของต้นโกงกาง</p>
+        </div>
+
+        <!-- แบบฟอร์มการคำนวณ -->
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>คำนวณการกักเก็บคาร์บอนจากต้นไม้</h3>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('calculate') }}" method="POST">
+                    <div class="form-group">
+                        <label for="circumference">เส้นรอบวง (เซนติเมตร)</label>
+                        <input type="number" class="form-control" id="circumference" name="circumference" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="height">ความสูง (เมตร)</label>
+                        <input type="number" class="form-control" id="height" name="height" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">คำนวณ</button>
+                </form>
+                <!-- ปุ่มใหม่ไปยังหน้าอัพโหลดไฟล์ Excel -->
+                <a href="{{ url_for('upload_excel') }}" class="btn btn-secondary btn-block mt-4">อัพโหลดไฟล์ Excel</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 โรงเรียนบางปะกง"บวรวิทยายน" & พลเดช พวงภู่. All rights reserved.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

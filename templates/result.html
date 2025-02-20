@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผลการคำนวณการกักเก็บคาร์บอน</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        .card-header {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .result-table th,
+        .result-table td {
+            text-align: center;
+        }
+
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>ผลการคำนวณการกักเก็บคาร์บอน</h3>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">ข้อมูลที่กรอก</h5>
+                <table class="table result-table">
+                    <thead>
+                        <tr>
+                            <th>เส้นรอบวง (เซนติเมตร)</th>
+                            <th>ความสูง (เมตร)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ circumference }}</td>
+                            <td>{{ height }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5 class="card-title mt-4">ผลการคำนวณ</h5>
+                <table class="table result-table">
+                    <thead>
+                        <tr>
+                            <th>การกักเก็บคาร์บอน (กิโลกรัม CO2)</th>
+                            <th>มวลชีวภาพเหนือพื้นดิน (WS)</th>
+                            <th>มวลชีวภาพใต้พื้นดิน (Below Ground)</th>
+                            <th>มวลชีวภาพรวม (Total Biomass)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ carbon_storage }}</td>
+                            <td>{{ WS }}</td>
+                            <td>{{ below_ground_biomass }}</td>
+                            <td>{{ total_biomass }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-block mt-4">กลับไปที่หน้าหลัก</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Carbon Sequestration Calculator. All rights reserved.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

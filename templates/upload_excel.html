@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>อัพโหลดไฟล์ Excel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>อัพโหลดไฟล์ Excel เพื่อคำนวณการกักเก็บคาร์บอน</h1>
+
+        <!-- ข้อความแจ้งเตือน -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('upload_excel') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">เลือกไฟล์ Excel (.xls, .xlsx):</label>
+                <input type="file" class="form-control" name="file" accept=".xls,.xlsx" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">อัพโหลด</button>
+        </form>
+
+        <!-- ปุ่มดาวน์โหลดข้อมูลตัวอย่าง -->
+        <a href="{{ url_for('static', filename='example_data.xlsx') }}" class="btn btn-success btn-block mt-4" download>
+            ดาวน์โหลดข้อมูลตัวอย่าง (Excel)
+        </a>
+
+        <hr>
+        <p><a href="{{ url_for('index') }}">กลับสู่หน้าหลัก</a></p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 Carbon Sequestration Calculator. All rights reserved.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
